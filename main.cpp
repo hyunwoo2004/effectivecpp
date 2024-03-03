@@ -1,29 +1,15 @@
-#include <iostream>
+#include<iostream>
 
-// C++ STL(Standard Template Library)
-// 구성요소
-// - 컨테이너(container)
-// - 반복자(iterator)
-// - 알고리즘(algorithm)
-// + 함수 객체(function objection)
-
-class A { // 함수 객체의 기본 구성
-public:
-	void operator()(int n)
-	{ 
-		std::cout << "데이터 - " << n << "을 처리함" << '\n';
-	}
-};
+// 미정의 동작(undefined behavior) <대표적으로>
+// 1. null pointer를 역참조(*)할 때
+// 2. 유효하지 않은 배열의 원소지정 번호를 참조하려 할 때
+//	-> 미정의 동작은 매우 위험하므로 하지 않도록 주의하자!
 
 int main() {
-	std::vector<int> vec{1,4,3,2,5}; // container
+	int* p = nullptr; // p는 nullptr이다.
+	std::cout << *p; // 경우 1
 	
-	for (std::vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) // iterator
-		std::cout << *itr << ' ';
-	std::cout << '\n';
+	char name[] = "Darla"; // 배열의 범위: 0 ~ 5
 
-	std::sort(vec.begin(), vec.end()); // algorithm
-
-	A a;
-	a(3); // function object
+	char c = name[10]; // 경우 2
 }
