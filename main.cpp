@@ -23,13 +23,14 @@ Widget& Widget::operator=(const Widget& rhs)
 }
 
 
+void dosomething(Widget w) 
+{ 
+	std::cout << "doing somthing with Widget Object" << '\n'; 
+}
+
 int main() {
-	Widget w1; // default ctor
+	Widget w1;
 
-	Widget w2(w1); // copy ctor
-
-	w1 = w2; // copy assignment operator
-
-	Widget w3 = w2; // copy ctor!!!(not operator!)
+	dosomething(w1); // 값의 의한 전달(pass-by-value) == 복사 생성자 호출(copy ctor calls)
 }
 
