@@ -1,30 +1,35 @@
 #include<iostream>
 
-// 초기화(initialization)
-class A {
+class Widget {
 public:
-	A() {} // 기본 생성자(default constructor)
+	Widget();	// 기본 생성자(default ctor)
+	Widget(const Widget& rhs); // 복사 생성자
+	Widget& operator=(const Widget& rhs); // 복사 할당(대입) 연산자(copy assignment operator)
 };
 
-class B {
-public:
-	explicit B(int n = 0, bool b = true) {} // 기본 생성자(default constructor)
-};
+Widget::Widget() 
+{ 
+	std::cout << "default ctor" << '\n'; 
+}
 
-class C {
-public:
-	explicit C(int x) {} // 기본 생성자 아님
-};
+Widget::Widget(const Widget& rhs) 
+{ 
+	std::cout << "copy ctor" << '\n'; 
+}
 
-void dosomething(B bObject) {}
+Widget& Widget::operator=(const Widget& rhs) 
+{ 
+	std::cout << "copy assignment operator" << '\n'; return *this; 
+}
+
 
 int main() {
-	B bObj1;
-	dosomething(bObj1); // 문제 없는 코드
-	
-	B bobj2(28);	// 괜찮은 코드, x인자가 0대신 28이 들어감 (bool은 그대로 true가 들어감)
-	dosomething(28);	//컴파일 에러! -> int에서 B로 전환활 생성자가 없음.
-				// >>> 다른 자료형으로의 암시적인 변환을 막는 키워드 - explicit
+	Widget w1; // default ctor
 
-	dosomething(B(28)); // 괜찮은 코드 int -> B로 명시적인 변환을 함!
+	Widget w2(w1); // copy ctor
+
+	w1 = w2; // copy assignment operator
+
+	Widget w3 = w2; // copy ctor!!!(not operator!)
 }
+
