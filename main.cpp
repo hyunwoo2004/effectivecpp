@@ -15,12 +15,17 @@ private:
   static const int NumTurns = 5;   // 상수 선언
   int scores[NumTurns];            // 상수를 사용하는 부분
 };
-// 위에 있는 NumTurns는 선언이다(정의가 아님을 확인!) 정적 멤버로 만들어지는 정수류(int, char, bool 등) 타입의 클래스 내부 상수는 예외
-// -> 주소를 취하지 않는 한 선언만 해도 문제는 없음(주소를 취할 시 컴파일러가 정의를 요구하는 경우는 별도로 정의를 제공해야 함)
-// 예시
-const int GamePlayer::NumTurns; 
-// 클래스 상수의 정의는 구현 파일에 둠.
-// 중요!: 정의에는 상수의 초기값이 있으면 안됨(클래스 상수의 초기값은 해당 상수가 선언된 시점에서 바로 주어지기 때문)
+const int GamePlayer::NumTurns; // 상수 정의
+
+// 조금 오래된 컴파일러는 위의 문법이 받아들이지 않는 경우가 존재(선언된 시점에 값을 주는 것이 대개 맞지 않는다고 판단할 수 있음)
+// 이 때는 이렇게 해야 함 (특히 정수류가 아닌 자료형의 경우도 포함)
+class GamePlayer {
+private:
+  static const double HP;   // 상수 선언
+ // ...
+};
+const double
+  GamePlayer::HP = 5.0; // 상수 정의
 
 int main() {
   
