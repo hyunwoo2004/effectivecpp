@@ -5,12 +5,12 @@
 // 항목 2: #define을 쓰려거든 const, enum, inline을 떠올리자
 // -> 다른 말로, '가급적 선행 처리자보다 컴파일러를 더 가까이 하자'이다.
 
-// 해결법: 매크로 대신 상수를 쓰자
-// 이름 표기도 바뀜(매크로를 정의 시 이름을 대문자로 씀)
-// 이 방법은 언어 차원에서 지원하는 상수 데이터이기 때문에 당연히 컴파일러도 볼 수 있음
-// 매크로와 차이점: 매크로는 쓰면 쓸 수록 사본이 늘어남, 그러나 이 방법은 많이 써도 사본은 1개만 생김
-const double Aspect_Ratio = 1.623; // --> #define ASPECT_RATIO 1.623
-
+// #define 에서 상수로 교체할 때 주의할 점
+// 1. 상수 포인터를 정의하는 경우
+//  상수 정의는 대부분 헤더파일에 넣는 것이 관례이므로 포인터는 꼭 const로 선언, 또한 포인터가 가리키는 대상까지 const로 선언하는 게 보통
+// 예시
+const char * const authorName = "Scott Meyers";
+const std::string authorName("Scott Meyers");   // 보완(char* 보다 std::string이 더 좋음)
 
 int main() {
   
