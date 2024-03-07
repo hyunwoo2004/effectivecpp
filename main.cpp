@@ -11,13 +11,7 @@
 
 int main() {
   char greetinr[] = "Hello";
-
-  char* p1 = greeting;              // 비상수 포인터
-                                    // 비상수 데이터
-  const char* p2 = greeting;        // 비상수 포인터
-                                    // 상수 데이터
-  char* const p3 = greeting;        // 상수 포인터
-                                    // 비상수 데이터
-  const char* const p4 = greeting;  // 상수 포인터
-                                    // 상수 데이터
+  const char* const p4 = greeting;  
+  // const가 *의 왼쪽에 있으면 포인터가 가리키는 대상이 상수인 반면
+  // const가 *의 오른쪽에 있으면 포인터 자체가 상수임
 }
