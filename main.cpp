@@ -4,14 +4,24 @@
 // 1. C++에 왔으면 C++ 법을 따릅시다.
 // 항목 3: 낌새만 보이면 const를 들이대 보자!
 
-// 가장 강력한 const의 용도: 함수 선언에 사용하는 경우
-// 함수 선언문에 const는 함수 반환 값, 각각의 매개변수, 멤버 함수 앞에 붙을 수 있고, 함수 전체에 대해 const의 성질을 붙일 수 있다.
-// 3. 상수 멤버 함수
-// 멤버 함수에 붙는 const 키워드의 역할은 "해당 멤버 함수가 상수 객체에 대해 호출될 함수이다"라는 사실을 알려 주는 것
-// 이런 함수가 중요한 이유
-// 2. 이 키워드를 통해 상수 객체를 사용할 수 있게 함
-// C++ 프로그램의 실행 성능을 놓이는 핵심 기법 중 하나가 객체 전달을 '상수 객체에 대한 참조자'로 진행하는 것이기 때문임
-// 근데 이 기법이 살아 움직이려면 상수 상태로 전달된 객체를 조작할 수 있는 const 멤버 함수, 
-// 즉 상수 멤버 함수가 준비되어 있어야 한다는 것이 포인트!!!
+// const키워드가 있고 없고의 차이만 있는 멤버 함수들은 오버로딩이 가능함
+// 예시
+class TextBlock {
+public:
+  //...
+  const char& operator[](std::size_t position) const // 상수 객체에 대한
+  { return text text[position]; }                    //operator[]
+  char& operator[](std::size_t position)             // 비상수 객체에 대한
+  { return text text[position]; }                    //operator[]
+private:
+  std::string text;
+};
 
-int main() {}
+int main() {
+  TextBlock tb{"Hello"};        // TextBlock::operator[]의
+  std::cout << tb[0];           // 비상수 멤버를 호출함
+
+  const TextBlock ctb{"World"}; // TextBlock::operator[]의
+  std::cout << ctb[0];          // 상수 멤버를 호출함
+  
+}
