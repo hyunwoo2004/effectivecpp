@@ -5,34 +5,39 @@
 // 항목 3: 낌새만 보이면 const를 들이대 보자!
 
 // 상수 멤버 및 비상수 멤버 함수에서 코드 중복 현상을 피하는 방법
-// mutable은 비트수준 상수성의 단점을 해결하는 단어임은 틀림없음
-// 그러나 이것만으로 const에 관련된 골칫거리 전부를 해결하는 것은 아님...
+// 그렇다면 이렇게 생각해보자. -> operator[] 양 버전들 중 하나만 제대로 만들고 다른 버전은 이것을 호출하면 어떨까?
+// 상수 버전을 만들고 const 껍데기를 캐스팅으로 날리면 가능?
 // 예시
 class TextBlock {
 public:
   //...
-  const char& operator[](std::size_t position) const 
+  const char& operator[](std::size_t position) const // 이전과 동일
   {
-    //...                                                  // 경계 검사
-    //...                                                  // 접근 데이터 로깅
-    //...                                                  // 자료 무결성 검증
+    //...      
+    //...     
+    //...      
     return text[position];
   }
 
-  char& operator[](std::size_t position)
+  char& operator[](std::size_t position) // 상수 버전 op[]를 호출하고 끝
   {
-    //...                                                  // 경계 검사
-    //...                                                  // 접근 데이터 로깅
-    //...                                                  // 자료 무결성 검증
-    return text[position];
+    return 
+      const_cast<char&>(                 // op[]의 반환 타입에 반환캐스팅을 적용, 
+                                         // const를 때어냄
+      static_cast<const TextBlock&>      // *this타입에 const를 붙임
+        (*this)[position]                // op[]의 상수 버전을 호출함
+      );
   }
 private:
   std::string text;
 };
-// operator[]의 상수와 비상수 버전에 넣어 버려면 어느새 코드 판박이 괴물이 우리 앞에 나타남
-// 코드 중복은 따라오는 골칫거리 친구들(컴파일 시간, 유지 보수, 코드 크기 부풀림) 감당X
-// 경계 검사 등을 멤버 변수에 옮긴다고 해도 return문 까지도 같음...
+// 위 코드를 보면 캐스팅을 두번함
+// 1. *this에 const를 붙이는 캐스팅 (static_cast)
+// 2. 상수 operator[]의 반환 값에서 const를 때어내는 캐스팅 (const_cast)
 
+// +a
+// 기본적으로, 캐스팅은 일반적으로도 통념적으로도 좋은 아이디어가 아님
+// 그렇다고 코드를 중복하기에도 문제점이 많음
 
 int main() {
 
