@@ -20,21 +20,22 @@ public:
   std::size_t length() const;
 private:
   char* pText;
-  std::size_t textlength;    // 바로 직전에 계산한 텍스트 길이
-  bool lengthIsValid;        // 이 길이가 현재 유효한가?
-};
+
+  mutable std::size_t textlength;    // 이 데이터 멤버들은 어떤 순간에도
+  mutable bool lengthIsValid;        // 수정이 가능함. 심지어 상수 멤버
+};                                   // 함수 안에서도 수정 가능함
 
 std::size_t CTextBlock::length() const 
 {
   if (!lengthIsValid) {
-    textLength = std::strlen(pText);  // 에러! 상수 멤버 함수 안에서는
-    lengthIsValid = true;             // textLength 및 lengthIsValid에
-  }                                   // 대입할 수 없음!
+    textLength = std::strlen(pText);  // 이제 문제없음
+    lengthIsValid = true;             // 당연히 문제없음
+  }                                   
 
   return textLength;
 }
-// length의 구현은 '비트수준 상수성'과 멀리 떨어져 있음!
-// 멤버 변수가 변할 수 있기 때문임
+// 다음 문제를 해결할 방법: mutable 키워드
+// mutable은 비정적 데이터 멤버를 비트수준 상수성의 족쇄에서 풀어 주는 아름다운 오색약수 같은 키워드
 
 
 int main() {
