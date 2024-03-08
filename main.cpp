@@ -18,7 +18,7 @@ int main() {
 
   ctb[0] = 'x';           // 컴파일 에러!, 상수 버전의 TextBlock 객체에 대해 쓰기는 안됨
 }
-// 주의할 점
-// 넷째 줄에서 발생한 에러는 순전히 operator[]의 반환 타입(return type)이 때문이라는 점!
-// operator[] 호출이 잘못된 것은 없음. 이 에러는 const char* 타입에 대입 연산을 시도해서 생김
-// operator[]의 반환 타입이 const char&이기 떄문에
+// +a
+// operator[]의 비상수 멤버는 char의 참조자(reference)를 반환하는 데, char 하나만 쓰면 안된다는 점도 알아두기
+// 만약 char&가 아닌 char라면 두번쨰가 컴파일 되지 않음.
+// -> tb[0]이 값의 의한 반환이 되기 떄문에 tb[0]의 사본에 대입하는 것이므로 의도하지 않은 행동이 됨
