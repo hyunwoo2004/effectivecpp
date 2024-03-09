@@ -6,32 +6,18 @@
 // 항목 4: 객체를 사용하기 전에 반드시 그 객체를 초기화하자
 
 // 생성자에서 지킬 규칙 - 그 객체의 모든 것을 초기화하자!
-// 쉬운 규칙 같지만 주의 할 점 -> 대입(Assignment)을 초기화(initialization)와 헷갈리지 않아야 함
+// 해결법 - 초기화 리스트 사용
 // 예시
-class PhoneNumber {...};
-
-class ABEtry {       // ABEtry = "Address Book Entry"
-public:
-  ABEtry(const std::string& name, const std::string& address,
-          const std::list<PhoneNumber>& phones);
-private:
-  std::string theName;
-  std::string theAddress;
-  std::list<PhoneNumber> thePhones;
-  int numTimesConsulted;
-};
-
 ABEtry::ABEtry(const std::string& name, const std::string& address,
           const std::list<PhoneNumber>& phones) 
-{
-  theName = name;                    // 지금은 모두 '대입'을 하고 있음
-  theAddress = address;              // '초기화'가 아님
-  thePhones = phones;
-  numTimesConsulted = 0;
-}
-// 원하는 결과는 나오겠지만 썩 좋지 않음
-// C++ 규칙에 의하면 어떤 객체이든 그 객체의 데이터 멤버는 생성자의 본문이 실행되기 '전에' 초기화되어야 한다고 명시됨
-// 위에 있는 생성자에서 '대입'하기 전에 데이터 멤버는 기본 생성자가 호출됨 (기본제공 타입의 데이터 멤버는 제외)
+: theName {name},                    // 이제 이들은 모두 '초기화'되고 있음
+  theAddress {address},
+  thePhones {phones},
+  numTimesConsulted {0}
+{}                                   // 생성자 본문에 이제 아무것도 없음
+// 앞에 결과와 같지만, 지금의 생성자가 더 효율적일 가능성이 큼
+// 이전 방법: 각 데이터 멤버의 기본 생성자를 호출하고 복사 대입 연산자를 호출함
+// 위 방법: 각 데이터 멤버의 복사생성자만 호출
 
 int main() {
 
