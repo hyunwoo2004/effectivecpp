@@ -15,6 +15,10 @@ ABEtry::ABEtry(const std::string& name, const std::string& address,
   thePhones {},                  // thePhones의 ctor 호출
   numTimesConsulted {0}          // 0으로 초기화
 {}
+// 이렇게 하는 게 과하다는 생각을 할 수도 있겠지만 하는게 좋음
+// 이유: 만약 numTimesConsulted가 초기화 리스트에 빠진다면 이 객체가 초기화되었는지 알 수 없음
+// 그러다가 미정의 동작으로 빠질 가능성+++
+
 
 int main() {
 
