@@ -23,6 +23,10 @@ private:
 NamedObject<int> no1("Smallest Prime Number", 2);
 NameObject<int> no2(no1);  // 여기서 복사생성자가 호출됨
 
+// 컴파일러산 복사 생성자는 no1.nameValue와 no1.ObjectValue를 사용해서
+// no2.nameValue 및 no2.ObjectValue를 각각 초기화해야 함
+// 1. no2.nameValue
+// 이 경우는 std::string의 복사 생성자에 no1.nameValue를 인자로 넘겨 호출함으로써 이루어짐
 
 int main() {
 
