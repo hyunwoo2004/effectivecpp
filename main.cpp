@@ -4,25 +4,15 @@
 // 2. 생성자, 소멸자 및 대입 연산자
 // 항목 6: 컴파일러가 만들어낸 함수가 필요 없으면 확실히 이들의 사용을 금해 버리자
 
-// 이걸 해결하려면 어떻게 해야 하는가?
-// 2. private에 선언한다.
-// + 링크 시점 오류에서 컴파일 시점 오류로 바꿀 수 있음
-// 별도의 클래스에서 복사 생성자/대입 연산자를 private에 선언하고 이를 상속받으면 됨
-// 예시
-class Uncopyable {
-protected:                                  // 파생된 객체에 대해서
-  Uncopyable();                             // 생성과 소멸을
-  ~Uncopyable();                            // 허용함
+// Uncopyable의 구현과 사용법에 대해 기술적으로 미묘한 부분 몆가지 지적한다
+// Uncopyable로부터의 상속은 public일 필요가 없음.
+// Uncopyable의 소멸자는 가상 소멸자가 아니어도 됨
+// Uncopyable 클래스는 데이터 멤버가 전혀 없기 때문에 나중에 나올 공백 기본 클래스 최적화(empty base class optimization) 기법이 먹힐 여지가 있음
+// 그러나 이 클래스는 기본 클래스이기 때문에 이 기법을 사용하면 다중 상속으로 갈 가능성이 있음
+// -> 다중 상속 시에는 공백 기본 클래스 최적화가 돌아가지 못할 때가 종종 있음
+// 이런 부분은 어지간하면 무시하고 살아도 아무 상관은 없음
+// boost 라이브러리를 보면 이와 비슷한 클래스를 찾을 수 있는데 이를 써도 됨 (noncopyable클래스로 괜찮은 클래스, 그래도 부자연스러움)
 
-private:
-  Uncopyable(const Uncopyable&);            // 하지만 복사는 방지함
-  Uncopyable& operator=(const Uncopyable&);
-};
-
-class HomeForSale : private Uncopyable {    // 복사 생성자도,
-  ...                                       // 복사 대입 연산자도
-};                                          // 이제는 선언되지 않음
-// 원하는 바를 깔끔하게 만든 코드
 
 
 int main() {
