@@ -18,8 +18,11 @@ private:
   std::String nameValue;
   T ObjectValue;
 };
-// 여기서 생성자가 선언되어 있으므로 기본 생성자가 만들어지지 않음
-// -> 꼭 인자가 필요한 생성자를 만들어야 겠다고 생각했다면 컴파일러는 인자가 없는 생성자를 만들어 결과가 이상해지지 않는다는 의미
+// 반면, 복사 생성자나 복사 대입 연산자는 NamedObject에 선언되어 있지 않기 때문에
+// 두 함수의 기본형이 컴파일러에 의해 만들어짐
+NamedObject<int> no1("Smallest Prime Number", 2);
+NameObject<int> no2(no1);  // 여기서 복사생성자가 호출됨
+
 
 int main() {
 
