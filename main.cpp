@@ -17,6 +17,13 @@ public:
                                          // 밑에서 더 자세히 설명하겠음
   Empty& operator=(const Empty& rhs) {}  // copy assignment operator
 };
+// + 이들은 컴파일러가 판단할 때만 만들어지도록 되어 있음
+// 조건
+Empty e1;         // 기본 생성자, 그리고
+                  // 소멸자
+Empty e2(e1);     // 복사 생성자
+
+e2 = e1;          // 복사 대입 연산자
 
 int main() {
 
