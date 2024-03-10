@@ -23,10 +23,12 @@ private:
 NamedObject<int> no1("Smallest Prime Number", 2);
 NameObject<int> no2(no1);  // 여기서 복사생성자가 호출됨
 
-// 컴파일러산 복사 생성자는 no1.nameValue와 no1.ObjectValue를 사용해서
-// no2.nameValue 및 no2.ObjectValue를 각각 초기화해야 함
-// 2. no2.ObjectValue
-// 이 경우, 기본제공 타입(int)이므로 비트 그대로 복사해 오는 것으로 끝남.
+// 컴파일러가 만들어주는 NameObject<int>의 복사 대입 연산자도 근본적으로 동작 원리는 같음
+// 일반적인 것만 보면, 복사 대입 연산자의 동작이 아까와 같게 되려면
+// -> 최종 결과 코드가
+// 1. 적법해야 하고(legal)
+// 2. 이치에 닿아야만(resonable) 함
+// 2개 중 하나라도 검사를 통과하지 못하면 컴파일러는 operator=의 자동생성을 거부함
 
 int main() {
 
