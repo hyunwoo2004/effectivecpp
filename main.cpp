@@ -9,11 +9,17 @@
 class SpecialString : public std::string {   // 가당찮은 아이디어임! std::string은
   ...                                        // 가상 소멸자가 없음!!!
 };
-
+// 겉으로는 티가 안나지만 어딘가에서 SpecialString의 포인터를 string의 포인터로 어떻게든 변환한 후에 그 string 포인터에 delete를 적용하면
+// 그 순간부터 우리는 '미정의 동작'행 급행 열차로 갈아타게 됨
 int main() {
-
-} 
-
+  SpecialString* pss = new SpecialString("Impending Doom");
+  std::string* ps;
+  ...
+  ps = pss;        // SpecialString* => std::string*
+  ...
+  delete ps;       // 정의되지 않은 동작이 발생
+}                  // 실질적으로 *ps의 SpecialString 부분에 있는 자원이 누출되는데
+                   // 그 이유는 SpecialString의 소멸자가 호출되지 않기 때문임!
 
 
 
