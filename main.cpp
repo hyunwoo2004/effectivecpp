@@ -2,13 +2,20 @@
 
 // Effective C++
 // 2. 생성자, 소멸자 및 대입 연산자
-// 항목 6: 컴파일러가 만들어낸 함수가 필요 없으면 확실히 이들의 사용을 금해 버리자
+// 항목 7: 다형성을 가진 기본 클래스에서는 소멸자를 반드시 가상 소멸자로 선언하자
 
-// 이것만은 잊지 말자!
-// - 컴파일러에서 자동으로 제공하는 기능을 허용치 않으려면, 대응되는 멤버 함수를
-//   private로 선언한 후에 구현은 하지 않은 채로 두십시오. Uncopyable과 비슷한 기본
-//   클래스를 쓰는 것도 한 밥법임.
+// 예를 들어, 시간 기록을 유지하는 TimeKeeper 클래스를 기본 클래스로 만들어 놓은 후에
+//            적절한 용도에 따라 이것을 파생시키도록 설계
+class TimeKeeper {
+public:
+  TimeKeeper();
+  ~TimeKeeper();
+  ...
+};
 
+class AtomicClock : public TimeKeeper {...};
+class WaterClock : public TimeKeeper {...};
+class WristClock : public TimeKeeper {...};
 
 int main() {
 
