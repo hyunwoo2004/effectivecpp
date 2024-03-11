@@ -21,6 +21,8 @@ int main() {
 }                  // 실질적으로 *ps의 SpecialString 부분에 있는 자원이 누출되는데
                    // 그 이유는 SpecialString의 소멸자가 호출되지 않기 때문임!
 
+// 이 현상은 가상 소멸자가 없는 클래스이면 어떤 것에든 전부 적용됨
+// 예시: STL 컨테이너 타입(vector, list, set, trl::unordered_map)
 
 
 
