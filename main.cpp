@@ -16,6 +16,10 @@ public:
 class AtomicClock : public TimeKeeper {...};
 class WaterClock : public TimeKeeper {...};
 class WristClock : public TimeKeeper {...};
+// 이 클래스의 혜택을 받는 사용자들은 시간 정보에 접근하고 싶음
+// -> 어떤 시간 기록 객체에 대한 포인터를 손에 넣는 용도로 팩토리 함수(factory function, 새로 생성된 파생 클래스 객체에 대한 기본 클래스 포인터를 반환하는 함수)
+//    를 만들기
+TimeKeeper* getTimeKeeper();
 
 int main() {
 
