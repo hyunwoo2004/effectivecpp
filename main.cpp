@@ -21,6 +21,19 @@ Transiaction::Transaction()                      // 기본 클래스 생성자�
  logTransaction();                               // 마지막 동작으로, 이 거래를
 }                                                // 로깅(하기 시작)함.
 
+class BuyTransaction : public Transaction {      // Transaction의 파생 클래스
+public:
+ virtual void logTransaction() const;            // 이 타입에 따른 거래내역
+                                                 // 로깅을 구현함
+ ...
+};
+
+class SellTransaction : public Transaction {     // 역시 파생 클래스
+public:
+ virtual void logTransaction() const;            // 이 타입에 따른 거래내역
+                                                 // 로깅을 구현함
+ ...
+};
 
 int main() 
 {
