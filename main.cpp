@@ -33,6 +33,10 @@ private:
   DBConnection db;
   bool closed;
 };
+// close 호출의 책임을 DBconn의 소멸자에서 DBConn의 사용자로 떠넘기는 이런 아이디어는 무책임한 책임 전가로 볼 순 있음
+// 다른 항목에는 "제대로 쓰기에 쉬운 인터페이스를 만들라"는 조언을 어긴거일 수도 있다는 생각을 가질 수 있음
+// 그러나 둘다 아님
+
 
 int main() 
 {
