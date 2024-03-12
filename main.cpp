@@ -15,6 +15,13 @@ public:                                          // 모든 거래에 대한
  ...
 };
 
+Transiaction::Transaction()                      // 기본 클래스 생성자의
+{                                                // 구현
+ ...
+ logTransaction();                               // 마지막 동작으로, 이 거래를
+}                                                // 로깅(하기 시작)함.
+
+
 int main() 
 {
   
