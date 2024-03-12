@@ -25,9 +25,17 @@ public:                         // 클래스
 private:
   DBConnection db;
 };
+// 이를 통해 다음과 같은 프로그래밍이 가능
+int main() 
+{                                        // 블록 시작
+  DBConn dbc(DBConnection::create());    // DBConnection 객체를 생성하고
+                                         // 이것을 DBConn 객체로 넘겨서
+                                         // 관리를 맡김
 
-
-
-int main() {
-
-}          
+                                         // DBConn 인터페이스를 통해
+                                         // 그 DBConnection 객체를 사용
+  
+}                                        // 블록 끝. DBConn 객체가
+                                         // 여기서 소멸됨. 따라서
+                                         // DBConnection 객체에 대한 close
+                                         // 함수의 호출이 자동으로 이루어짐 
