@@ -4,15 +4,32 @@
 // 2. 생성자, 소멸자 및 대입 연산자
 // 항목 9: 객체 생성 및 소멸 과정 중에는 절대로 가상 함수를 호출하지 말자
 
-// 만약 logTransaction 함수가 '보통'가상 함수(순수가 아닌)이며, Transaction의 멤버 버전이 구현되어 있을 경우엔 머리가 터지기 시작하게 됨
-// 앞에서 말한 것처럼 Transaction의 버전이 호출될 것이고 우리는 왜 BuyTransaction 객체를 생성하는데 Transaction 버전이 나온 이유를 알지 못하게 됨
-// 이런 문제를 피하는 방법은 다른 게 없음
-// -> 생성 중이거나 소멸 중인 객체에 대해 생성자나 소멸자에서 가상 함수를 호출하는 코드를 적절히 솎아내고, 생성자와 소멸자가 호출하는 
-//    모든 함수들이 똑같은 제약을 따르도록 만드는 방법 밖에 없음
+// 이제는 이 문제의 대처방법에 대해 말하겠음
+// 방법은 여러 가지이지만 한 가지만 설명할 것임
+// -> logTransaction을 Transaction 클래스의 비가상 멤버 함수로 바꾸는 것임
+//    그러고 나서 파생 클래스의 생성자들로 하여금 필요한 로그 정보를 Transaction의 생성자로 넘겨야 한다는 규칙을 만든다
+// logTransaction이 비가상 함수이기 때문에 Transaction의 생성자는 이 함수를 안전하게 호출 가능
+class Transaction {
+public:
+  explicit Transaction(const std::string& logInfo);
+  void logTransaction(const std:: string& logInfo) const;  // 이제는 비가상
+  ...                                                      // 함수임
+};
+Transaction::Transaction(const std::string& logInfo) 
+{
+  ...
+  logTransaction(logInfo);                                 // 이제는 비가상 함수를
+}                                                          // 호출함
 
-//   그러나 Transaction 클래스 계통에 속해 있는 많고 많은 클래스 중 하나로 만들어진 객체가 생성될 때마다 
-// logTransaction 가상 함수의 호출이 제대로 이루어지도록 맞추는 일도 결코 만만한 일이 아님
-// 어쨌든 Transaction 생성자에서 가상 함수를 호출하는 것은 이런 바람직한 일과 확실히 거리가 멈 잊지 말자!
+class BuyTransaction : public Transaction {
+public:
+  BuyTransaction( parameters )
+    : Tranaction(createLogString( parameters ))            // 로그 정보를
+  {  ...  }                                                // 기본 클래스
+  ...                                                      // 생성자로 넘김
+private:
+  static std::string createLogString( parameters );
+};
 
 int main() 
 {
