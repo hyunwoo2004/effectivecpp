@@ -4,46 +4,14 @@
 // 2. 생성자, 소멸자 및 대입 연산자
 // 항목 9: 객체 생성 및 소멸 과정 중에는 절대로 가상 함수를 호출하지 말자
 
-// 객체 생성 및 소멸 과정 중에는 가상 함수를 호출하면 안 됨!
-// 예시: 주식 거래를 본떠 만든 클래스 계톧 구조
-class Transaction {
-public:                                          // 모든 거래에 대한
- Transactoin();                                  // 기본 클래스
+// 이 같은 동작에는 다 이유가 있음
+// -> 기본 클래스 생성자는 파생 클래스 생성자보다 앞서서 실행되기 때문에, 
+//    기본 클래스 생성자가 돌아가고 있을 시점에 파생 클래스 데이터 멤버는 아직 초기화된 상태가 아님이 중요!
+// 이 때 기본 클래스 생성자에서 어쩌다 호출된 가상 함수가 파생 클래스 쪽으로 내려간다면 어떨까?
+// -> 파생 클래스 버전의 가상 함수는 파생 클래스만의 데이터 멤버를 건드릴 것이 뻔한데, 이들은 아직 초기화되지 않음
+// 어떤 객체의 초기화되지 않은 역역을 건드린다는 것은 치명적인 위험을 내포하므로
+// C++는 이런 실수를 하지 않도록 막음
 
- virtual void logTransaction() const = 0;        // 타입에 따라 달라지는
-                                                 // 로그 기록을 만듦
- ...
-};
-
-Transiaction::Transaction()                      // 기본 클래스 생성자의
-{                                                // 구현
- ...
- logTransaction();                               // 마지막 동작으로, 이 거래를
-}                                                // 로깅(하기 시작)함.
-
-class BuyTransaction : public Transaction {      // Transaction의 파생 클래스
-public:
- virtual void logTransaction() const;            // 이 타입에 따른 거래내역
-                                                 // 로깅을 구현함
- ...
-};
-
-class SellTransaction : public Transaction {     // 역시 파생 클래스
-public:
- virtual void logTransaction() const;            // 이 타입에 따른 거래내역
-                                                 // 로깅을 구현함
- ...
-};
-// 이제 아래의 코드가 실행될 때 어떻게 되는지 생각해보자.
 int main() 
 {
- BuyTransaction b;
 }
-// BuyTransaction 생성자가 호출되는 것은 맞음. 그러나 우선은 Transaction 생성자가 호출되어야 함
-// 파생 클래스 객체가 생성될 때 그 객체의 기본 클래스 부분이 파생 클래스 부분보다 먼저 호출되는 것이 정석
-// Transaction 생성자의 마지막 줄을 보면 가상 함수인 logTransaction을 호출하는 문장이 보이는데 무척 당혹스러운 사건이 벌어지는 부분이 바로 이 문장임
-// 여기서 logTransaction 함수는 BuyTransaction의 것이 아니라 Transaction의 것이란 사실! (지금 생성되는 객체의 타입이 BuyTransaction 인데도)
-// 기본 클래스의 생성자가 호출될 동안에는, 가상 함수는 절대로 파생 클래스 쪽으로 내려가지 않음
-// 그 대신, 객체 자신이 기본 클래스 타입인 것처럼 동작. -> 기본 클래스 생성 과정에는 가상 함수가 먹히지 않음
-
-
