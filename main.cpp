@@ -27,6 +27,11 @@ Widget& operator=(const Widget& rhs)      // 안전하지 않게 구현된 opera
   return *this;                           // 이 부분은 항목 10 참고
 }
 
+// 여기서 찾을 수 있는 자기 참조 문제는 operator= 내부에서 *this와 rhs가 같은 객체일 가능성이 있음
+// 이 둘이 같은 객체이면, delete 연산자가 *this 객체의 비트맵에만 적용되는 것이 아니라 rhs의 객체까지 적용됨
+//   이 함수가 끝나는 시점이 되면 해당 Widget 객체는 자신의 포인터 멤버를 통애 물고 있던 객체가 어처구니없게도
+// 삭제된 상태가 되는 불상사를 당하게 됨
+
 int main() 
 {
 
