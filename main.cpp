@@ -18,6 +18,15 @@ private:
   Bitmap* pb;                             // Free store에 할당한 객체를 가리키는 포인터
 };
 
+// 이제 겉보기에 멀쩡해 보이는 operator=의 구현 코드를 보자
+Widget& operator=(const Widget& rhs)      // 안전하지 않게 구현된 operator=
+{
+  delete pb;                              // 현재의 비트맵 사용을 중지함
+  pb = new Bitmap(*rhs.pb);               // 이제 rhs의 비트맵을 사용하도록 만듦
+
+  return *this;                           // 이 부분은 항목 10 참고
+}
+
 int main() 
 {
 
