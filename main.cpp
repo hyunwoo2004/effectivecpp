@@ -18,6 +18,21 @@ public:
 private:
   int priority;
 };
+PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
+  :  priority(rhs.priority)
+{
+  logCall("PriorityCustomer copy constructor");
+}
+
+PriorityCustomer& 
+PriorityCustomer::operator=(const PriorityCustomer& rhs)
+{
+ logCall("PriorityCustomer copy assignment operator");
+
+  priority = rhs.priority;
+
+  return *this;
+}
 
 int main() 
 {
