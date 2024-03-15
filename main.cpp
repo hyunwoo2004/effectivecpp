@@ -20,6 +20,20 @@ private:
   std::string name;
 };
 
+Customer::Customer(const Customer& rhs) 
+  : name(rhs.name)                                 // rhs의 데이터를 복사함
+{
+  logCall("Customer copy constructor");
+}
+
+Customer& operator=(const Customer& rhs) 
+{
+  logCall("Customer copy assignmenr operator");
+  
+  name = rhs.name;                                 // rhs의 데이터를 복사함
+   
+  return *this;                                    // 항목 10 참고
+}
 
 int main() 
 {
