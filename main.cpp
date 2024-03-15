@@ -23,6 +23,19 @@ Widget& Widget::operator=(const Widget& rhs)
   return *this;
 }
 
+// 이 방법은 C++가 가진 두가지 특징을 활용해서 조금 다르게 구현할 수도 있음
+// 1. 클래스의 복사 대입 연산자는 인자를 값으로 취하도록 선언하는 것이 가능하다
+// 2. 값에 의한 전달을 수행하면 전달된 대상의 사본이 생긴다
+// 예시
+Widget& Widget::operator=(Widget rhs)              // rhs는 넘어온 원래 객체의 사본임
+{                                                  // - '값에 의한 전달'이라고 했음
+  
+  swap(temp);                                      // *this의 데이터를 이 사본의
+                                                   // 데이터와 맞바꿈
+  return *this;
+}
+
+
 int main() 
 {
 
