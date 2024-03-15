@@ -33,6 +33,9 @@ PriorityCustomer::operator=(const PriorityCustomer& rhs)
 
   return *this;
 }
+// PriorityCustomer 클래스의 복사 함수는 언뜻 보기엔 PriorityCustomer의 모든 것을 복사하고 있는 것처럼 보이지만, 다시 한번 보라!
+//  PriorityCustomer에 선언된 데이터 멤버를 모두 복사하고 있는 것은 사실이지만, Customer로부터 상속한 데이터 멤버들의 사본도 엄연히 
+// PriorityCustomer클래스에 들어 있는데, 이들은 복사가 안 되고 있음!!!
 
 int main() 
 {
