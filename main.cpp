@@ -15,6 +15,16 @@ PriorityCustomer::PriortyCustomer(const PriorityCustomer& rhs)
   logCall("PriorityCustomer copy constructor");
 }
 
+PriorityCustomer& PriorityCustomer::operator=(const PriorityCustomer& rhs)                                             
+{
+  logCall("PriorityCustomer copy assignment operator");
+
+  Customer::operator=(rhs);                                      // 기본 클래스 부분을 대입함
+  priority = rhs.priority;
+
+  return *this;
+}
+
 int main() 
 {
 
