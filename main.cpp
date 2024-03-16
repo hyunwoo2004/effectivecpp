@@ -24,6 +24,10 @@ PriorityCustomer& PriorityCustomer::operator=(const PriorityCustomer& rhs)
 
   return *this;
 }
+// 이번 항목의 제목으로 "모든 부분을 복사하자"라는 말의 말귀를 이제 이해할 수 있을 것임
+// 객체의 복사 함수를 작성할 때는 다음의 두 가지를 확인하자
+// 1. 해당 클래스의 데이터 멤버를 모두 복사하기
+// 2. 이 클래스가 상속한 기본 클래스의 복사 함수도 꼬박꼬박 호출하기
 
 int main() 
 {
