@@ -18,6 +18,18 @@ Investment* createInvestment();                    // Investment 클래스 계�
                                                    // 이 객체의 해제는 호출자 쪽에서 직접
                                                    // 해야 함
                                                    // (매개변수는 복잡하니까 뺌.)
+// 주석문에 나와있듯이, createInvestment 함수를 통애 얻어낸 객체를 사용할 일이 이제 없을 때 그 객체를 삭제해야 하는 쪽은 이 함수의 호출자(caller)임
+// 그렇게 쓰라고 만든 만큼, 따라 주는 것이 당연한 것임 함수 f는 그렇게 만들어짐
+// 예시
+void f() 
+{
+  Investment* pInv = createInvestment();           // 팩토리 함수를 호출함
+
+  ...                                              // pInv를 사용함
+
+  delete pInv;                                     // 객체를 해제함
+}
+
 int main() 
 {
 
