@@ -9,6 +9,9 @@
 
 // 예시: Mutex 타입의 뮤텍스 객체를 조작하는 C API를 우리가 사용하는 중이라고 가정
 //       -> 이 C API에서 제공하는 함수 중엔 lock 및 unlock이 있음
+void lock(Mutex *pm);            // pm이 가리키는 뮤텍스에 잠금을 킴
+
+void unlock(Mutex *pm);          // pm이 가리키는 해당 뮤텍스에 잠금을 품
 
 int main() 
 {
