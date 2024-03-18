@@ -16,6 +16,17 @@ void unlock(Mutex *pm);          // pm이 가리키는 해당 뮤텍스에 잠�
 // 이전에 걸어 놓은 뮤텍스 잠금을 잊지 않고 풀어 줄 목적임
 // 이런 용도의 클래스는 기본적으모 RAII 법칙을 따라 구성함
 // 즉, 생성 시에 자원을 획득하고, 소멸 시에 그 자원을 해제하는 것
+// 예시
+class Lock {
+public:
+  explicit Lock(mutex* pm)
+    : mutexPtr(pm)
+  {  lock(mutexPtr);  }                          // 자원을 획득함
+
+  ~Lock() { unlock(mutexPtr); }                  // 자원을 해제함
+private:
+  Mutex* mutexPtr;
+};
 
 int main() 
 {
