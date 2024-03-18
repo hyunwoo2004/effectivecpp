@@ -21,5 +21,5 @@ int main()
   std::tr1::shared_ptr<int> spi(new int[10]);          // 같은 문제가 발생
 }
 
-
-
+// C++ 표준 라이브러리에는 동적 할당된 배열을 위해 준비된 auto_ptr 혹은 tr1::shared_ptr 같은 클래스가 제공되지 않음. 심지어 TR1까지 그렇다
+// 왜냐하면 동적으로 할당된 배열은 이제 vector 밒 string으로 거의 대체할 수 있기 때문임
