@@ -12,10 +12,13 @@
 // delete[] 연산자가 아님! (delete와 delete[] 차이는 항목 16 참고)
 // 말하자면, 동적으로 할당할 배열에 대해 auto_ptr이나 tr1::shared_ptr을 사용하면 대략 난감하다는 이야기임
 // 동적 배열을 써도 컴파일 에러가 나지 않는게 문제
-
+// 예시
 int main() 
 {
-
+  std::auto_ptr<std::string>                           // 좋지 않은 발상임!
+    aps(new std::string[10]);                          // 잘못된 delete가 사용됨
+  
+  std::tr1::shared_ptr<int> spi(new int[10]);          // 같은 문제가 발생
 }
 
 
