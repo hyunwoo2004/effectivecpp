@@ -13,6 +13,9 @@ std::tr1::shared_ptr<Investment> pInv(createInvestment());
 // 예시
 int daysHeld(const Investment* pi);                            // 투자금이 유입된 이후로
                                                                // 경과한 날수
+// 그리고 이렇게 호출하고 싶을 것임
+int days = daysHeld(pInv);                                     // 에러!
+
 
 int main() 
 {
