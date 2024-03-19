@@ -27,6 +27,19 @@
 
 // 참으로 다행인 것은 tr1::shared_ptr이 '삭제자(deleter)' 지정을 허용한다는 사실임
 // 여기서 삭제자란, tr1::shared_ptr이 유지하는 참조 카운트 0이 되었을 때 호출되는 함수 혹은 함수 객체를 일컫음(반면, auto_ptr에는 이 기능이 없음)
+// 삭제자는 tr1::shared_ptr 생성자의 두 번째 매개변수로 선택적으로 넣어 줄 수 있음
+// 예시
+class Lock {
+public:
+  explicit Lock(Mutex* pm)                       // shared_ptr을 초기화하는데, 가리킬 포인터로
+  : mutexPtr(pm, unlock)                         // Mutex 객체의 포인터를 사용하고 삭제자로
+  {                                              // unlock 함수를 사용
+    
+    lock(mutexPtr.get());                        // "get"의 이야기는 항목 15 참고
+  }
+private:
+  std::tr1::shared_ptr<Mutex> mutexPtr;          // 원시 포인터 대신에
+};                                               // shared_ptr을 사용함
 
 int main() 
 {
