@@ -33,7 +33,7 @@ public:
   FontHandle get() const { return f; }                        // 명시적 변환 함수
   ...                                    
 };
-
+// 이렇게 해 부면 어쨌든 쓸 수 있긴 한데, 사용자는 하부 수준 API를 쓰고 싶을 때마다 get을 호출해야 함
 
 int main() 
 {
