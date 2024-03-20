@@ -19,6 +19,11 @@ int days = daysHeld(pInv);                                     // 에러!
 // 에석하게도 이 코드는 컴파일이 안 됨
 // dayHeld 함수는 Investment* 타입의 실제 포인터를 원하는데, 여러분은 tr1::shared_ptr<Investment> 타입의 객체를 넘기고 있음
 
+// RAII 클래스의 객체를 그 객체가 감싸고 있는 실제 자원(예시: Investment*)으로 변환한 방법이 필요함
+// 이런 목적에 일반적인 방법을 쓴다면 두가지가 있음
+// 1. 명시적 변환(explicit conversion)
+// 2. 암시적 변환(implicit conversion)
+
 int main() 
 {
 
