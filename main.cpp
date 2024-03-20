@@ -12,6 +12,9 @@
 // tr1::shared_ptr 및 auto_ptr은 명시적 변환을 수행하는 get이라는 멤버 함수를 제공함
 // 다시 말해 이 함수를 사용하면 각 타입으로 만든 스마트 포인터 객체에 들어 있은 실제 포인터(의 사본)을 얻어낼 수 있음
 
+int days = datsHeld(pInv.get());                          // 이제 문제없음. pInv에 들어 있는
+                                                          // 실제 포인터를 daysHeld에 넘기기 때문
+
 int main() 
 {
 
