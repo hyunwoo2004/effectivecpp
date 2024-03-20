@@ -13,6 +13,17 @@ FontHandle getFont();                                         // C API에서 가
 
 void releaseFont(FontHandle fh);                              // 역시 같은 C API에서 가져온 함수
 
+class Font {                                                  // RAII 클래스
+public:
+  explicit Font(FontHandle fh)                                // 자원을 획득함. 여기서
+  : f(fh)                                                     // 값에 의한 전달이 수행되는 것에
+  {}                                                          // 주의하자. 자원 해제를
+  ~Font() { releaseFont(f); }                                 // C API로 하기 때문임
+
+private:
+  FontHandle f;                                               // 실제 폰트 자원
+};
+
 int main() 
 {
 
