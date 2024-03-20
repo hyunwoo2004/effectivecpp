@@ -37,6 +37,10 @@ bool taxable1 = !(pi1->isTaxFree());                      // operator->를 써�
 std::auto_ptr<Investment> pi2(createInvestment());        // auto_ptr로 하여금
                                                           // 자원 관리를 맡도록 함
 
+bool taxable2 = !((*pi2).isTaxFree());                    // operator*를 써서
+                                                          // 자원에 접근함
+...
+
 int main() 
 {
 
