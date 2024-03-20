@@ -40,6 +40,9 @@ std::auto_ptr<Investment> pi2(createInvestment());        // auto_ptr로 하여�
 bool taxable2 = !((*pi2).isTaxFree());                    // operator*를 써서
                                                           // 자원에 접근함
 ...
+// RAII 객체 안에 들어 있는 실제 자원을 얻어낼 필요가 종종 생기기 때문에, RAII 클래스 설계자 중에는
+// 암시적 변환 함수를 제공하여 자원 접근을 매끄럽게 할 수 있도록 만드는 사람도 있음
+
 
 int main() 
 {
