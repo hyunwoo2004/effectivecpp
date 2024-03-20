@@ -30,6 +30,9 @@ Investment* createInvestment();                           // 팩토리 함수
 std::tr1::shared_ptr<Investment>                          // tr1::shared_ptr이 자원
   pi1(createInvestment());                                // 관리를 맡도록 함
 
+bool taxable1 = !(pi1->isTaxFree());                      // operator->를 써서
+                                                          // 자원에 접근함
+
 int main() 
 {
 
