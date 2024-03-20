@@ -23,6 +23,9 @@ public:
 private:
   FontHandle f;                                               // 실제 폰트 자원
 };
+// 하부 수준 C API는 FontHandle을 사용하도록 만들어져 있으며 규모도 무척 크다고 가정하면,
+// Font 객체를 FontHandle로 변환해야 할 경우도 적지 않을 것이라는 예상을 해 볼 수 있음
+// Font 클래스에서는 이를 위한 명시적 변환 함수로 get을 제공할 수 있을 것임
 
 int main() 
 {
