@@ -19,6 +19,12 @@ int days = datsHeld(pInv.get());                          // 이제 문제없음
 // 포인터 역참조 연산자(operator-> 및 operator*)도 오버로딩하고 있음
 // 따라서 자신이 관리하는 실제 포인터에 대한 암시적 변환도 쉽게 할 수 있음
 
+class Investment {                                        // 여러 형태의 투자를 모델링한
+public:                                                   // 투자 클래스들의 최상위 클래스
+  bool isTaxFree() const;
+  ...
+};
+
 int main() 
 {
 
