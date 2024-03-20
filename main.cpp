@@ -37,6 +37,13 @@ public:
 
 void changeFontSize(FontHandle f, int newSize);               //  폰트 API의 일부
 
+Font f(getFont());
+int newFontSize;
+...
+
+changeFontSize(f.get(), newFontSize);                         // Font에서 FontHandle로
+                                                              // 명시적으로 바꾼 후에 넘김
+
 int main() 
 {
 
