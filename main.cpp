@@ -25,6 +25,8 @@ public:                                                   // 투자 클래스들
   ...
 };
 
+Investment* createInvestment();                           // 팩토리 함수
+
 int main() 
 {
 
