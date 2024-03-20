@@ -15,6 +15,10 @@
 int days = datsHeld(pInv.get());                          // 이제 문제없음. pInv에 들어 있는
                                                           // 실제 포인터를 daysHeld에 넘기기 때문
 
+// 제대로 만들어진 스마트 포인터 클래스라면 거의 모두가 그렇듯, tr1::shared_ptr과 auto_ptr은 
+// 포인터 역참조 연산자(operator-> 및 operator*)도 오버로딩하고 있음
+// 따라서 자신이 관리하는 실제 포인터에 대한 암시적 변환도 쉽게 할 수 있음
+
 int main() 
 {
 
