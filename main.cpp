@@ -27,6 +27,9 @@ public:                                                   // 투자 클래스들
 
 Investment* createInvestment();                           // 팩토리 함수
 
+std::tr1::shared_ptr<Investment>                          // tr1::shared_ptr이 자원
+  pi1(createInvestment());                                // 관리를 맡도록 함
+
 int main() 
 {
 
