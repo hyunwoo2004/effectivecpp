@@ -43,6 +43,9 @@ int newFontSize;
 
 changeFontSize(f.get(), newFontSize);                         // Font에서 FontHandle로
                                                               // 명시적으로 바꾼 후에 넘김
+// 변환할 때마다 무슨 함수를 호출해 주어야 한다는 점이 짜증나서 Font 클래스를 안 쓰고 말겠다는 프로그래머도 분명히 나오게 됨.
+// 이것 때문에 폰트 자원이 누출될 가능성이 늘어난다면 그것만큼 애석한 일도 없음
+// Font 클래스를 설계한 가장 큰 목적이 폰트 자원의 누출을 막는 것임...
 
 int main() 
 {
