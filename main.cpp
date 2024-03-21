@@ -20,6 +20,14 @@ int newFontSize;
 changeFontSize(f, newFontSize);                                   // Font에서 FontHandle로
                                                                   // 암시적 변환을 수행함
 // 그렇다고 마냥 좋은 것은 아님. 암시적 변환이 들어가면 실수를 저지를 여지가 많아짐
+// 진짜 Font를 쓰려고 한 부분에서 원하지도 않았는데 FontHandle로 덜커덕 바뀔 수 있음
+
+Font f1(getFont());
+
+FontHandle f2 = f1;                                               // 허걱! 원래 의도는 Font 객체를
+                                                                  // 복사하는 것이었는데, 엉뚱하게도
+                                                                  // f1이 FontHandle로 바뀌고 나서
+                                                                  // 복사되어 버림
 
 int main() 
 {
