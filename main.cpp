@@ -18,6 +18,12 @@ public:
   ...                                    
 };
 // 암시적 변환 함수 덕택에 C API를 사용하기가 훨씬 쉬워지고 자연스러워짐
+Font f(getFont());
+int newFontSize;
+...
+
+changeFontSize(f, newFontSize);                                   // Font에서 FontHandle로
+                                                                  // 암시적 변환을 수행함
 
 int main() 
 {
