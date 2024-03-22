@@ -35,6 +35,8 @@ std::string* stringPtr2 = new std::string[100];
 delete stringPtr1;                                            // 객체 한 개를 삭제함
 delete[] stringPtr2;                                          // 객체의 배열을 삭제함
 // stringPtr2에 '[]' 형태를 사용하지 않으면 어떤 일이 생기는가?
+// 이것도 역시 정의된 바는 없으나 우리가 겪게 될 사태의 원인이 '소멸자 호출 획수가 너무 적어서'라는 점은 분명함
+// 심지어 int 등의 기본제공 타입이라 해도 이들의 배열에 대해 []을 쓰지 않으면 미정의 동작이 나타남 (int는 소멸자가 없음)
 
 int main() 
 {
