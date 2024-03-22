@@ -15,6 +15,9 @@
 // 이 규칙은 typedef 애호가들도 알아둘 가치가 있음
 // typedef로 정의된 어떤 타입의 객체(배열)을 메모리에 생성라혀고 new를 썼을 때,
 // 나중에 어떤 형태의 delete를 적어줘야 하는가에 대한 언급을 달아주는 책임을 해당 typedef 타입의 작성자가 져야 한다고 압박을 가하는 의미로 볼 수 있음
+// 예시: 어떤 typedef 타입이 다음과 같이 되어 있다고 가정
+typedef std::string AddressLines[4];                                        // 주소는 네 줄로 되어 있고 
+                                                                            // 각각은 string임
 
 int main() 
 {
