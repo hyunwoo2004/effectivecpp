@@ -18,6 +18,10 @@
 // 예시: 어떤 typedef 타입이 다음과 같이 되어 있다고 가정
 typedef std::string AddressLines[4];                                        // 주소는 네 줄로 되어 있고 
                                                                             // 각각은 string임
+// AddressLines는 보다시피 배열임. 따라서 아래처럼 new를 사용하면
+std::string* pal = new AddressLines;                                        // "new AddressLines"는 string*을
+                                                                            // 반환한다는 점을 잊으면 안됨
+                                                                            // "new string[4]"이기 때문
 
 int main() 
 {
