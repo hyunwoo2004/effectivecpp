@@ -22,6 +22,18 @@
 
 // 어떤 포인터에 대해 delete를 적용할 때, delete 연산자로 하여금 '배열 크기 정보가 있다'는 것을 알려 줄 칼자루는 바로 우리에게 있음
 // 우리가 입을 다물면 아무도 모름
+// 이때 대괄호 쌍([])을 delete 뒤에 붙여 주는 것임
+// 그제야 delete가 '포인터가 배열을 가리키고 있구나'라고 가정하게 됨
+// 그렇지 않으면 그냥 단일 객체라고 간주하게 됨
+// 예시
+std::string* stringPtr1 = new std::string;
+
+std::string* stringPtr2 = new std::string[100];
+
+...
+
+delete stringPtr1;                                            // 객체 한 개를 삭제함
+delete[] stringPtr2;                                          // 객체의 배열을 삭제함
 
 int main() 
 {
