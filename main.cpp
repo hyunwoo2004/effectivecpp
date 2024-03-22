@@ -34,6 +34,8 @@ std::string* stringPtr2 = new std::string[100];
 
 delete stringPtr1;                                            // 객체 한 개를 삭제함
 delete[] stringPtr2;                                          // 객체의 배열을 삭제함
+// stringPtr1에 '[]' 형태를 사용하면 어떤 일이 생기는가?
+// 딱 정해진 것은 아니지만, 결과가 별로 아름답지 않을 것 같음
 
 int main() 
 {
