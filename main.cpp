@@ -22,6 +22,9 @@ typedef std::string AddressLines[4];                                        // �
 std::string* pal = new AddressLines;                                        // "new AddressLines"는 string*을
                                                                             // 반환한다는 점을 잊으면 안됨
                                                                             // "new string[4]"이기 때문
+// delete 역시 배열(array) 형태가 되어야 문단속이 제대로 됨
+delete pal;                                                                 // 무슨 일이 생길지 몰라!
+delete[] pal;                                                               // 깔끔 마무리
 
 int main() 
 {
