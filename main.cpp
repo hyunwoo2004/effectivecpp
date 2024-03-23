@@ -18,6 +18,9 @@ void processWidget(std::tr1::shared_ptr<Widget> pw, int priority);
 processWidget(new Widget, priority());
 
 // 잠깐만, 이 코드가 어떻게 될지 생각하려고 했으면 아직임 - 컴파일이 안 됨
+// 포인터를 받는 tr1::shared_ptr의 생성자는 explicit로 선언되어 있기 때문에 
+// 'new Widget' 표현식에 의해 만들어진 포인터가 tr1::shared_ptr 타입의 객체로 바꾸는 암시적인 변환이 있을 리가 없음
+// processWidget에는 tr1::shared_ptr이 필요함
 
 int main() 
 {
