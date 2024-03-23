@@ -12,6 +12,10 @@ std::tr1::shared_ptr<Widget> pw(new Widget);              // new로 생성한 �
 
 processWidget(pw, priority());                            // 이제는 자원 누출 걱정이 없음
 
+// 한 문장 안에 있는 연산들보다 문장과 문장 사이에 있는 연산들이 컴파일러의 재조정을 받을 여지가 적기 때문에 위의 코드는 자원 누출 가능성이 없음
+// 고쳐진 코드를 보면 "new Widget" 표현식과 tr1::shared_ptr 생성자는 한 문장에 들어 있고, priority를 호출하는 코드는 별도의 문장에 있음
+// 그렇기 때문에 컴파일러가 priority 호출을 들 사이로 옮기고 싶어도 허용이 안 되는 거임
+
 int main() 
 {
 
