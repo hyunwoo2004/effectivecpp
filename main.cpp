@@ -30,6 +30,8 @@ processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 // 2. priority을 호출함
 // 3. tr1::shared_ptr 생성자를 호출함
 
+// 하지만 priority 호출 부분에서 예외가 발생했다면 어떻게 될지 생각해 보자!
+
 int main() 
 {
 
