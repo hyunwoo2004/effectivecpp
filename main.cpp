@@ -4,39 +4,22 @@
 // 3. 자원 관리
 // 항목 17: new로 생성한 객체를 스마트 포인터에 저장하는 코드는 별도의 한 문장으로 만들자
 
-// 처리 우선순위를 알려 주는 함수가 하나 있고, 동적으로 할당한 Widget 객체에 대해 어떤 우선순위에 따라 처리를 적용하는 함수가 하나 있다고 가정함
-
-int priority();
-
-void processWidget(std::tr1::shared_ptr<Widget> pw, int priority);
-
-// 자원 관리에는 객체를 사용하는 것이 좋다는 겨레의 가르침(항목 13 참조)을 코드에 되살려, 
-// process Widget 함수는 동적 할당된 Widget 객체에 대해 스마트 포인터(여기서 tr1::shared_ptr)를 사용하도록 만들어짐
-
-// 이렇게 만들어진 processWidget 함수를 이제 호출함
-
-processWidget(new Widget, priority());
-
-// 잠깐만, 이 코드가 어떻게 될지 생각하려고 했으면 아직임 - 컴파일이 안 됨
-// 포인터를 받는 tr1::shared_ptr의 생성자는 explicit로 선언되어 있기 때문에 
-// 'new Widget' 표현식에 의해 만들어진 포인터가 tr1::shared_ptr 타입의 객체로 바꾸는 암시적인 변환이 있을 리가 없음
-// processWidget에는 tr1::shared_ptr이 필요함
-// 그러나 다음 코드는 컴파일이 됨
-
+// 예시
 processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
-
-// 그런데 여기에는 또 이해할 수 없는 사실이 숨어 있음 - 어디서든 잘 쓰고 있는 자원 관리 객체를 쓰고 있는데도, 이 문장은 자원을 흘릴 가능성이 있음
-// 어째서 그런지 생각해보자!
 
 // 컴파일러는 processWidget 호출 코드를 만들기 전에 우선 이 함수의 매개변수로 넘겨지는 인자를 평가하는 순서를 밟음
 // 여기서 두번째 인자는 priority 함수의 호출문 밖에 없지만, 첫 번째 인자("tr1::shared_ptr<Widget>(new Wieget)")는 두 부분으로 나누어져 있음
+
 // - "new Widget" 표현식을 실행하는 부분
 // - tr1::shared_ptr 생성자를 호출하는 부분
 
 // 사정이 이렇기 떄문에, processWidget 함수 호출이 이루어지기 전에 컴파일러는 다음의 세 가지 연산을 위한 코드를 만들어야 함
+
 // - priority을 호출함
 // - "new Widget"을 실행함
 // - tr1::shared_ptr 생성자를 호출함
+
+// 그런데, 여기서 각각의 연산이 실행되는 순서는 컴파일의 제작사마다 다르다는 게 문제임
 
 int main() 
 {
