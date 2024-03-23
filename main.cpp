@@ -17,6 +17,8 @@ void processWidget(std::tr1::shared_ptr<Widget> pw, int priority);
 
 processWidget(new Widget, priority());
 
+// 잠깐만, 이 코드가 어떻게 될지 생각하려고 했으면 아직임 - 컴파일이 안 됨
+
 int main() 
 {
 
