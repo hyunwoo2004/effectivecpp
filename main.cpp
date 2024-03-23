@@ -24,6 +24,11 @@ processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 // "new Widget" 표현식은 tr1::shared_ptr 생성자가 실행될 수 있기 전에 호출되어야 함
 // 왜냐하면 이 표현식의 결과가 tr1::shared_ptr 생성자의 인자로 넘어가니까 당연함
 // 그러나 priority 호출은 처음 호출될 수도 있고, 두 번쨰나 세 번째에 호출될 수 있음
+// 만일 어떤 컴파일러에서 두 번쨰라고 정했다면(효율 면에서 더 괜찮은 코드를 만들 수 있는 방법 이기도 함) 연산 순서는 다음과 같이 결정됨
+
+// 1. "new Widget"을 실행함
+// 2. priority을 호출함
+// 3. tr1::shared_ptr 생성자를 호출함
 
 int main() 
 {
