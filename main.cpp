@@ -20,6 +20,7 @@ processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 // - tr1::shared_ptr 생성자를 호출함
 
 // 그런데, 여기서 각각의 연산이 실행되는 순서는 컴파일의 제작사마다 다르다는 게 문제임
+// C++ 컴파일러의 경우엔 이들의 순서를 정하는 데 있어서 상당한 자유도를 갖고 있음! (자바, C#은 매개변수의 평가 순서가 특정하게 고정됨)
 
 int main() 
 {
