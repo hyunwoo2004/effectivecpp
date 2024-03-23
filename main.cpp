@@ -31,6 +31,9 @@ processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 // 3. tr1::shared_ptr 생성자를 호출함
 
 // 하지만 priority 호출 부분에서 예외가 발생했다면 어떻게 될지 생각해 보자!
+// "new Widget"으로 만들어졌던 포인터가 유실될 수 있음
+// 자원 누출을 막아 줄 줄 알고 준비한 tr1::shared_ptr에 저장되기 전에 예외가 발생했기 때문임
+
 
 int main() 
 {
