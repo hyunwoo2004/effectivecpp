@@ -25,6 +25,9 @@ processWidget(new Widget, priority());
 
 processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 
+// 그런데 여기에는 또 이해할 수 없는 사실이 숨어 있음 - 어디서든 잘 쓰고 있는 자원 관리 객체를 쓰고 있는데도, 이 문장은 자원을 흘릴 가능성이 있음
+// 어째서 그런지 생각해보자!
+
 int main() 
 {
 
