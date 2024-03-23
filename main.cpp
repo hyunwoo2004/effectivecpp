@@ -28,6 +28,11 @@ processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 // 그런데 여기에는 또 이해할 수 없는 사실이 숨어 있음 - 어디서든 잘 쓰고 있는 자원 관리 객체를 쓰고 있는데도, 이 문장은 자원을 흘릴 가능성이 있음
 // 어째서 그런지 생각해보자!
 
+// 컴파일러는 processWidget 호출 코드를 만들기 전에 우선 이 함수의 매개변수로 넘겨지는 인자를 평가하는 순서를 밟음
+// 여기서 두번째 인자는 priority 함수의 호출문 밖에 없지만, 첫 번째 인자("tr1::shared_ptr<Widget>(new Wieget)")는 두 부분으로 나누어져 있음
+// - "new Widget" 표현식을 실행하는 부분
+// - tr1::shared_ptr 생성자를 호출하는 부분
+
 int main() 
 {
 
