@@ -33,6 +33,11 @@ processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
 // - "new Widget" 표현식을 실행하는 부분
 // - tr1::shared_ptr 생성자를 호출하는 부분
 
+// 사정이 이렇기 떄문에, processWidget 함수 호출이 이루어지기 전에 컴파일러는 다음의 세 가지 연산을 위한 코드를 만들어야 함
+// - priority을 호출함
+// - "new Widget"을 실행함
+// - tr1::shared_ptr 생성자를 호출함
+
 int main() 
 {
 
