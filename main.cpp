@@ -10,6 +10,9 @@ int priority{};
 
 void processWidget(std::tr1::shared_ptr<Widget> pw, int priority);
 
+// 자원 관리에는 객체를 사용하는 것이 좋다는 겨레의 가르침(항목 13 참조)을 코드에 되살려, 
+// process Widget 함수는 동적 할당된 Widget 객체에 대해 스마트 포인터(여기서 tr1::shared_ptr)를 사용하도록 만들어짐
+
 int main() 
 {
 
