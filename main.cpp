@@ -50,7 +50,11 @@ public:
 
 int main() 
 {
+  Date d(30, 3, 1995);                                                  // 에러! 타입이 틀림
 
+  Date d(Day(30), Month(3), Year(1995));                                // 에러! 타입이 틀림
+
+  Date d(Month(3), Day(30), Year(1995));                                // 옳지, 타입이 전부 맞음
 }
 
 
