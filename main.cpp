@@ -20,6 +20,9 @@ public:
   Date(int month, int day, int year);
   ...
 };
+// 첫인상이 그리 고약하지 않은 인터페이스임
+// 별 문제는 없을 것 같음(최소한 미합중국에서는 말임)
+
 
 int main() 
 {
