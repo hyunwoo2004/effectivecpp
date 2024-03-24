@@ -22,6 +22,31 @@ Date d(3, 40, 1995);                                                    // 쩝, 
 //  키를 처다 보면 '하나 살짝 비껴가는' 타자 실수는 드물지 않음)
 
 // 새로운 타임을 들여와 인터페이스를 강화하면 상당수의 사용자 실수를 막을 수 있음
+// 살다 보면 몸으로 느끼겠지만, 어처구니없는 코드가 컴파일되는 부조리로부터 우리를 지켜주는 오른팔이 바로 타입 시스템임
+// 지금의 경우, 일, 월, 연을 구분하는 간단한 랩퍼(wrapper) 타입을 각각 만들고 이 타입을 Date 생성자 안에 둘 수 있을 것임
+struct Day {
+  explicit Day(int d)
+    : val(d) {}
+  int val;
+};
+
+struct Month {
+  explicit Month(int m)
+    : val(m) {}
+  int val;
+};
+
+struct Year {
+  explicit Year(int y)
+    : val(y) {}
+  int val;
+};
+
+class Date {
+public:
+  Date(const Month& m, const Day& d, const Year& y);
+  ...
+};
 
 int main() 
 {
