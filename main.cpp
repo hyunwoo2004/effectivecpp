@@ -12,6 +12,8 @@
 // 이 함수는 어떤 컨테이너에 들어 있는 원소의 개수를 알려줌
 // 자바의 경우, 배열에 대해선 length 프로퍼티(property)를 사용하고, String에 대해선 
 // length 메서드(method)를 불러야 하며 List에 대해서는 size 메서드를 쓰도록 되어 있음
+// 닷넷(.NET)은 어떤가?
+// Array에서 이런 용도로 개방해 놓은 프로퍼티의 이름은 length인데, Arraylist에서 원소 개수를 세는 프로퍼티의 이름은 Count임
 
 int main() 
 {
