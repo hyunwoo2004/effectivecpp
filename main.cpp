@@ -14,6 +14,8 @@
 // length 메서드(method)를 불러야 하며 List에 대해서는 size 메서드를 쓰도록 되어 있음
 // 닷넷(.NET)은 어떤가?
 // Array에서 이런 용도로 개방해 놓은 프로퍼티의 이름은 length인데, Arraylist에서 원소 개수를 세는 프로퍼티의 이름은 Count임
+// 뭐, 통합 개발 환경(integrated development environment IDE)을 쓰다 보면 이름이 좀 달라도 크게 문제될 게 없다고 쉽게
+// 넘기려는 개발자도 있지만 그들이 실수하는 거임
 
 int main() 
 {
