@@ -25,6 +25,8 @@ private:
   ...                                                        // 월 표현을 위한 내부 데이터
 };
 
+Date d(Month::Mar(), Day(30), Year(1995));
+
 int main() 
 {
 }
