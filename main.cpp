@@ -11,6 +11,9 @@
 // createInvestment를 살짝 고쳐서, getRidOfInvestment가 삭제자로 묶인 tr1::shared_ptr을 반환하도록 
 // 구현해 둔다면 이런 문제는 발도 못 들여놓을 것이다.
 
+// tr1::shared_ptr에는 두 개의 인자를 받는 생성자가 있다
+// 첫번째 인자는 이 스마트 포인터로 관리할 실제 포인터고, 두 번쨰 인자는 참조 카운트가 0이 될 때 호출될 삭제자임
+
 int main() 
 {
 }
