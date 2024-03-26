@@ -8,6 +8,8 @@
 //                             getRidOfInvestment라는 이름의 함수를 준비해서 여기에 넘기게 하면 어떤가?
 // 왠지 더 깔끔해 보이지만 이런 인터페이스는 되레 사용자 실수를 하나 더 열어놓는 결과를 가져옴
 // 자원 해제 매커니즘을 잘못 사용할 수가 있음 (getRidOfInvestment를 잊고 delete를 쓰는 경우)
+// createInvestment를 살짝 고쳐서, getRidOfInvestment가 삭제자로 묶인 tr1::shared_ptr을 반환하도록 
+// 구현해 둔다면 이런 문제는 발도 못 들여놓을 것이다.
 
 int main() 
 {
