@@ -20,6 +20,8 @@ std::tr1::shared_ptr<Investment>                      // 이렇게 해서 사용
   pInv(0, getRidOfInvestment);                        // 널 shared_ptr을 생성했으면 좋겠다.
                                                       // 그런데 컴파일이 안 되니 난감할 뿐임
 
+// 이것은 제대로 쓴 C++ 코드가 아님
+
 int main() 
 {
 }
