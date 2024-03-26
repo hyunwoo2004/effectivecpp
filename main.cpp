@@ -24,6 +24,12 @@ std::tr1::shared_ptr<Investment>                      // 이렇게 해서 사용
 // tr1::shared_ptr의 '그' 생성자는 첫 번째 매개변수로 포인터로 받아야 함
 // 그런데 0은 포인터가 아니라 int임 - 물론 0은 포인터로 변환할 수 있지만 지금의 경우에는 이것만으로 부족함
 // -> tr1::shared_ptr이 요구하는 포인터는 Investment* 타입의 실제 포인터이기 떄문임
+// 그래서 캐스트를 적용하여 사태를 해결함
+
+std::tr1::shared_ptr<Investment>                      // getRidOfInvestment를 삭제자로
+  pInv( static_cast<Invest*>(0),                      // 갖는 널 shared_ptr을 생성함
+        getRidOfInvestment);                          // 여기서 쓰인 static_cast애 대한
+                                                      // 설명은 항목 27에서 확인하자!
 
 int main() 
 {
