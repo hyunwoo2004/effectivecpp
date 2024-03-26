@@ -12,6 +12,9 @@
 
 std::tr1::shared_ptr<Investment> createInvestment();
 
+// 이렇게 해 두면, 이 함수의 반환 값은 tr1::shared_ptr에 넣어둘 수밖에 없을 뿐더러, 나중에 Investment 객체가 필요 없어졌을 때
+// 이 객체를 삭제하는 것을 깜빡하고 넘어가는 불상사도 생기지 않을 거임
+
 int main() 
 {
 }
