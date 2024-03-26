@@ -16,6 +16,10 @@
 // -> 그러니까 tr1::shared_ptr이 널(null) 포인터를 물게 함과 동시에 삭제자로 getRidOfInvestment를 
 //    갖게 하는 방법으로 다음과 같은 코드를 쓰면 안 될까라는 생각이 들 수 있음
 
+std::tr1::shared_ptr<Investment>                      // 이렇게 해서 사용자 정의 삭제자를 가진
+  pInv(0, getRidOfInvestment);                        // 널 shared_ptr을 생성했으면 좋겠다.
+                                                      // 그런데 컴파일이 안 되니 난감할 뿐임
+
 int main() 
 {
 }
