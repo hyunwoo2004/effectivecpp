@@ -26,6 +26,10 @@ std::tr1::shared_ptr<Investment> createInvestment()
   return retVal;
 }
 
+// 눈치 채신 사람도 있겠지만, retVal로 관리할 실제 객체의 포인터를 결정하는 시점이 retVal을 생성하는 시점보다 앞설 수 있으면, 위의 코드처럼
+// retVal을 널로 초기화하고 나서 나중에 대입하는 방법보다 실제 객체의 포인터를 바로 retVal의 생성자에 넘겨버리는 게 나음
+// 이유가 궁금하다면 항목 26을 참고하자
+
 int main() 
 {
 }
