@@ -15,6 +15,16 @@ std::tr1::shared_ptr<Investment>                      // getRidOfInvestment를 �
                                                       // 설명은 항목 27에서 확인하자!
 
 // 이제는 createInvestment 함수에서 getRidOfInvestment를 삭제자로 갖는 tr1::shared_ptr을 반환하도록 구현하는 방법이 어렴풋이 정리할 수 있음
+// 아마 다음 코드와 비슷할 거임
+
+std::tr1::shared_ptr<Investment> createInvestment()
+{
+  std::tr1::shared_ptr<Investment> retVal(static_cast<Investment>(0),
+                                          getRidOfInvestment());
+  retVal = ... ;                                      // retVal은 실제 객체를 가리키도록
+                                                      // 만들자!
+  return retVal;
+}
 
 int main() 
 {
