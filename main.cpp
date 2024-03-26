@@ -11,6 +11,14 @@
 // 그 객체를 삭제할 떄는 이전의 DLL과 다른 DLL에 있는 delete을 썼을 경우임
 // 이렇게 new/delete 짝이 실행되는 DLL이 달라서 꼬이게 되면 대다수의 플랫폼에서 런타임 에러가 일어남
 // 그런데 tr1::shared_ptr은 이 문제를 피할 수 있음
+// 이 클래스의 기본 삭제자는 tr1::shared_ptr이 생성된 DLL과 동일한 DLL에서 delete를 사용하도록 만들어져 있기 때문임
+// 무슨 뜻이냐 하면, 예를 들어 Stock이라는 클래스가 Investmenr에서 파생된 클래스이고 createInvestment 함수가 아래와 같이 구현되어 있다고 할 때,
+
+std::tr1::shared_ptr<Investment> createInvestment()
+{
+  return std::tr1::shared_ptr<Investment>(new Stock);
+}
+// 이 함수가 반환하는 tr1::shared_ptr은 다른 DLL들 사이에 이리저리 넘겨지더라도 교차 DLL 문제를 걱정하지 않아도 된다는 뜻임
 
 int main() 
 {
