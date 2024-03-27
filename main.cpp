@@ -19,6 +19,7 @@ std::tr1::shared_ptr<Investment> createInvestment()
   return std::tr1::shared_ptr<Investment>(new Stock);
 }
 // 이 함수가 반환하는 tr1::shared_ptr은 다른 DLL들 사이에 이리저리 넘겨지더라도 교차 DLL 문제를 걱정하지 않아도 된다는 뜻임
+// Stock 객체를 가리키는 tr1::shared_ptr은 그 Stock 객체의 참조 카운트가 0이 될 때 어떤 DLL의 delete를 사용해야 하는지를 꼭 붙들고 잊지 않음
 
 int main() 
 {
