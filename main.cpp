@@ -28,9 +28,15 @@ private:
   std::string schoolName;
   std::string schoolAddress;
 };
+// 이제 아래 코드를 보자! - validateStudent라는 함수를 호출하고 있는데, 이 함수는 Student 인자를 전달받고(값으로), 이 인자가 유효화됐는가를 알려 주는 값을 반환함
 
+bool validateStudent(Student s);                                // Student를 값으로
+                                                                // 전달받는 함수
 int main() 
 {
+  Student plato;                                                // 소크라데스의 제다 플라톤
+
+  bool platoOK = validateStudent(plato);                        // 이제 함수를 호출함
 } 
 
 
