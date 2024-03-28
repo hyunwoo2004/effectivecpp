@@ -19,6 +19,15 @@ private:
   std::string address;
 };
 
+class Student : public Person {
+public:
+  Student();                                                    // 역시 비슷한 이유로 매개변수 생략
+  ~Student();
+  ...
+private:
+  std::string schoolName;
+  std::string schoolAddress;
+};
 
 int main() 
 {
