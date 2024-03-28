@@ -14,6 +14,14 @@
 
 bool validateStudent(const Student& s);
 
+// 이렇게 하면 순식간에 훨씬 효율적인 코드로 바뀜
+// 새로 만들어지는 객체 같은 것이 없기 때문에, 생성자와 소멸자가 전혀 호출되지 않음
+// 여기서 새겨둬야 할 부분이 매개변수 선언문에 있는 const임 - 이것이 아주 중요!
+// 원래의 validateStudent는 Student 객체에 어떤 변화가 생기더라고 그 변화로부터 안전하게 보호를 받는다는 점을 알고 있음
+// 그도 그럴 것이 valideateStudent가 상대하는 Student 객체는 원본이 아닌 사본이기 때문임
+// 그런데 이제는 Student 객체의 전달 방식이 참조에 의한 전달임
+// 매개변수 앞에 const가 붙은 건 바로 그 때문인데, 이것이 붙지 않으면 validateStudent함수로 넘어간 Student 객체가 변할지도 모른다는 걱정을 호출부가 해야 함
+
 int main() 
 {
 
