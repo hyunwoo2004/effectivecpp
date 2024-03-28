@@ -38,5 +38,6 @@ int main()
 
   bool platoOK = validateStudent(plato);                        // 이제 함수를 호출함
 } 
+// 이 함수가 호출될 때 어떤 일이 일어날까?
 
 
