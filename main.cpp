@@ -11,6 +11,9 @@
 // 이야기가 이렇게 끝나면 얼마나 큰 기쁨이겠습니까만, 끝나려면 좀 멀었음
 // Student 객체에는 string 객체 두 개다 멤버로 들어가 있기 때문에, Student 객체가 생성될 때마다 이들 string 형제도 덩달아 생성이 되어야 함
 // 게다가 Student 객체는 Person 객체로부터 파생되었기 때문에, Student 객제가 생성되면 Person 객체도 (먼저) 생성되어야 함
+// Person 객체 안에는 또 string 객체 두 개가 들어 있기 때문에, Person 객체가 매번 생성될 때 string 생성자가 두 번 더 불리게 됨
+// 최종 결과는 갑갑함 - 단지 Student 객체 하나를 값으로 전달했을 뿐인데 Student 복사 생성자 호출 한 번, 
+//                      Person 복사 생성자 호출 한 번에 추가로 string 복사 생성자 호출이 네 번 일어남
 
 int main() 
 {
